@@ -1,8 +1,8 @@
+import { delay as reduxSagaDelay } from '@redux-saga/delay-p';
 /// <reference path="../ISagaTester.d.ts" />
 
 import * as chai from 'chai'
 import SagaTester from 'redux-saga-tester'
-import { delay } from 'redux-saga';
 import { IStoryRunnerProvider, storyRunner, IStoryRunnerChildrenStatus, IStoryRunnerYieldFormat } from '../../storyAnim/storyRunner';
 import { SET_EVENT_DATA } from '../../storyAnim/actions/eventData';
 import { combineReducers } from 'redux';
@@ -99,9 +99,9 @@ describe("storyRunner", () => {
 		await tester.waitFor(STORE_STORY_ITEM, true)
 		tester.dispatch({type: SET_EVENT_DATA, eventData: {type: "SCROLL_POS", pos: 50}})
 		await tester.waitFor(STORE_STORY_ITEM, true)
-		await delay(0) // Yield back to the sagas
+		await reduxSagaDelay(0) // Yield back to the sagas
 		tester.dispatch({type: SET_EVENT_DATA, eventData: {type: "SCROLL_POS", pos: 80}})
-		await delay(0) // Yield back to the sagas
+		await reduxSagaDelay(0) // Yield back to the sagas
 
 
 		// await tester.waitFor(STORE_STORY_ITEM, true)
@@ -138,7 +138,7 @@ describe("storyRunner", () => {
 
 		tester.dispatch({type: SET_EVENT_DATA, eventData: {type: "SCROLL_POS", pos: 2}})
 		await tester.waitFor(STORE_STORY_ITEM, true)
-		await delay(0) // Yield back to the sagas
+		await reduxSagaDelay(0) // Yield back to the sagas
 		const actions2 = tester.getCalledActions().filter(x => [STORE_STORY_ITEM, DELETE_STORY_ITEM].indexOf(x.type) > -1)
 		actions2.should.have.length(5)
 		// The children are exiting immediately, hence we should see one delete and one create
