@@ -1,6 +1,7 @@
+import { delay as reduxSagaDelay } from '@redux-saga/delay-p';
 import { take, fork, cancel, put, select } from "redux-saga/effects";
 import { SET_EVENT_DATA } from "./actions/eventData";
-import { Task, delay } from "redux-saga";
+import { Task } from "redux-saga";
 import Ix from "@reactivex/ix-es5-cjs"
 import { Action } from "redux";
 import { deleteStoryItem, STORE_STORY_ITEM, IStoreStoryItemAction, DELETE_STORY_ITEM } from "./actions/storyItem";
@@ -101,7 +102,10 @@ export const storyRunner = function*(storyData: IStoryRunnerProvider, eventData?
 		if (result.done) {
 			const running = getActualRunningChildren(runningChildren)
 			for (const cancelId of running)
-				yield cancel(runningChildren[cancelId])
+				yield /* TODO: JSFIX could not patch the breaking change:
+                errors thrown during cancellation process are no longer swallowed, you need to keep finally blocks fail-safe 
+                Suggested fix: Code in the finally block of the cancelled task should be wrapped in a try-catch or similar if it may somehow throw */
+                cancel([runningChildren[cancelId]])
 			break
 		}
 		if (isAction(result.value) && result.value.type !== NOP) {
@@ -116,7 +120,7 @@ export const storyRunner = function*(storyData: IStoryRunnerProvider, eventData?
 		}
 	}
 
-	yield delay(0)
+	yield reduxSagaDelay(0)
 
 	// Remove any items crated by this story, and any cancelled child stories
 	for (const activeItem of itemRegistry.getAllActive(storyData.id))
