@@ -1,39 +1,40 @@
 {
-	"name": "saga-stories",
-	"version": "1.0.3",
-	"description": "",
-	"main": "build/index.js",
-	"types": "build/index.d.ts",
-	"repository": "tvedtorama/saga-stories",
-	"scripts": {
-		"build": "tsc",
-		"test": "mocha --require source-map-support/register $(find build/tests -name '*.js') --reporter spec"
-	},
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"@reactivex/ix-es5-cjs": "^2.3.5",
-		"react": "^16.4.1",
-		"react-motion": "^0.5.2",
-		"react-redux": "^5.0.7",
-		"redux": "^4.0.0",
-		"redux-saga": "^0.16.0"
-	},
-	"devDependencies": {
-		"@types/chai": "^4.1.4",
-		"@types/lodash": "^4.14.110",
-		"@types/mocha": "^5.2.4",
-		"@types/node": "^10.5.2",
-		"@types/react": "^16.4.6",
-		"@types/react-motion": "0.0.26",
-		"@types/react-redux": "^6.0.3",
-		"@types/react-router": "^4.0.28",
-		"@types/react-router-dom": "^4.2.7",
-		"babel-polyfill": "^6.26.0",
-		"chai": "^4.1.2",
-		"mocha": "^5.2.0",
-		"redux-saga-tester": "^1.0.379",
-		"source-map-support": "^0.5.8",
-		"typescript": "^2.9.2"
-	}
+ "name": "saga-stories",
+ "version": "1.0.3",
+ "description": "",
+ "main": "build/index.js",
+ "types": "build/index.d.ts",
+ "repository": "tvedtorama/saga-stories",
+ "scripts": {
+  "build": "tsc",
+  "test": "mocha --require source-map-support/register $(find build/tests -name '*.js') --reporter spec"
+ },
+ "author": "",
+ "license": "ISC",
+ "dependencies": {
+  "@reactivex/ix-es5-cjs": "^2.3.5",
+  "react": "^16.4.1",
+  "react-motion": "^0.5.2",
+  "react-redux": "^5.0.7",
+  "redux": "^4.0.0",
+  "redux-saga": "^1.0.0",
+  "": "^redux-saga/delay-p"
+ },
+ "devDependencies": {
+  "@types/chai": "^4.1.4",
+  "@types/lodash": "^4.14.110",
+  "@types/mocha": "^5.2.4",
+  "@types/node": "^10.5.2",
+  "@types/react": "^16.4.6",
+  "@types/react-motion": "0.0.26",
+  "@types/react-redux": "^6.0.3",
+  "@types/react-router": "^4.0.28",
+  "@types/react-router-dom": "^4.2.7",
+  "babel-polyfill": "^6.26.0",
+  "chai": "^4.1.2",
+  "mocha": "^5.2.0",
+  "redux-saga-tester": "^1.0.379",
+  "source-map-support": "^0.5.8",
+  "typescript": "^2.9.2"
+ }
 }
